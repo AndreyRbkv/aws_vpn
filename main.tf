@@ -15,16 +15,8 @@ output "access_vpn_url" {
   description = "The public url address of the vpn server"
 }
 
-locals {
-  images = {
-    us-east-1      = "ami-037ff6453f0855c46"
-    eu-central-1   = "ami-0764964fdfe99bc31"
-    ap-northeast-1 = "ami-04f47c2ec43830d77"
-  }
-}
-
 resource "aws_instance" "openvpn" {
-  ami                    = local.images[var.server_region]
+  ami                    = "ami-0764964fdfe99bc31"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.instance.id]
 
